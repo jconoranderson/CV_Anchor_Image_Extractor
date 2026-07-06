@@ -1,0 +1,28 @@
+# Ignore input and output video/image folders
+input_videos/
+anchor_images/
+output_images/
+
+# Ignore downloaded OpenCV DNN models
+deploy.prototxt
+res10_300x300_ssd_iter_140000.caffemodel
+
+# Python standard ignores
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+env.bak/
+venv.bak/
+
+# Jupyter Notebook ignores
+.ipynb_checkpoints
+*.ipynb
+
+# IDEs
+.vscode/
+.idea/
