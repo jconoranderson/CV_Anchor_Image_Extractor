@@ -10,17 +10,24 @@ A high-performance Python pipeline that automatically extracts unique individual
 
 ## Usage
 
-Place any videos (`.mp4`, `.mov`, `.avi`) into the `input_videos/` directory and run the script:
+### 1. Batch Video Processing (Recommended)
+To recursively process an entire directory (or day) of videos, use the `process_day_videos.py` wrapper script. This script will automatically find all `.avi` files, process them individually, and create a dedicated anchor images folder next to each video file.
 
 ```bash
-python3 extract_cv2_anchors.py
+python process_day_videos.py "/path/to/video/directory"
 ```
+*(Tip: Add `PYTHONUNBUFFERED=1` before the command if you are piping the output to a log file and want live terminal updates).*
 
-The script will automatically cluster the faces and save the top 5 sharpest frames for each unique person into the `anchor_images/` directory.
+### 2. Single Video/Directory Extraction
+If you want to process a specific set of videos manually, you can run the core extractor directly. By default, it looks in `input_videos/` and outputs to `anchor_images/`:
+
+```bash
+python extract_unique_anchors_fast.py --input_dir /path/to/inputs --output_dir /path/to/outputs
+```
 
 ## Configuration
 
-You can easily adjust the settings at the top of `extract_cv2_anchors.py`:
-- `TOP_N_PER_PERSON`: Number of images to output for each unique individual (default: 5).
+You can easily adjust the settings at the top of `extract_unique_anchors_fast.py`:
+- `TOP_N_PER_PERSON`: Number of images to output for each unique individual (default: 25).
 - `SAMPLE_RATE`: The frame skip interval (default: 30).
 - `EPS`: The strictness for grouping people together in DBSCAN.
